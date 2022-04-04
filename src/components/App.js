@@ -62,7 +62,7 @@ const App = () => {
         </h1>
       </Header>
       <Content style={{ padding: '50px 50px' }}>
-        <BredCrumbItems id={selectPost.id} title={selectPost.title} />
+        <BredCrumbItems post={`/:${selectPost.id}`} id={selectPost.id} title={selectPost.title} />
         <div className="site-layout-content" style={{ padding: '20px 20px' }}>
           <Routes>
             <Route
@@ -83,9 +83,10 @@ const App = () => {
 )}
             />
             <Route
-              path="editPost"
+              path=":id"
               element={(
                 <EditPost
+                  setSelectPost={setSelectPost}
                   selectPost={selectPost}
                   comments={comments}
                   setUserComment={setUserComment}

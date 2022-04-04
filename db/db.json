@@ -76,17 +76,19 @@
       "preview": "https://www.reviewpro.com/wp-content/uploads/2022/02/carli-jeen-UWRqlJcDCXA-unsplash-1024x683.jpg",
       "title": "Title",
       "id": 11
+    },
+    {
+      "author": "Volkova",
+      "description": "Description 1",
+      "preview": "https://www.reviewpro.com/wp-content/uploads/2019/05/traveler.jpeg",
+      "title": "My post",
+      "id": 12
     }
   ],
   "comments": [
     {
       "id": 1,
       "body": "some comment",
-      "postId": 1
-    },
-    {
-      "id": 2,
-      "body": "some comment 2",
       "postId": 1
     },
     {
@@ -108,6 +110,21 @@
       "body": "hi there!",
       "postId": "8",
       "id": 7
+    },
+    {
+      "body": "Some new comment",
+      "postId": "3",
+      "id": 15
+    },
+    {
+      "body": "yhoo",
+      "postId": "11",
+      "id": 16
+    },
+    {
+      "body": "some comment",
+      "postId": "12",
+      "id": 18
     }
   ]
 }

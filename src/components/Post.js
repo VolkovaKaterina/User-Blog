@@ -26,7 +26,7 @@ const Post = ({
         extra={(
           <Button onClick={() => {
             setSelected(post);
-            navigate('/editPost');
+            navigate(`:${post.id}`);
           }}
           >
             Edit

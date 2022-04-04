@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Button, Col, Form, List, Row, Typography,
 } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { useParams } from 'react-router-dom';
+import { getPost } from '../api/apiRequest';
 
 const EditPost = ({
-  selectPost, comments, setUserComment, editUserComment, userComment, deleteComment,
+  selectPost, setSelectPost, comments, setUserComment, editUserComment, userComment, deleteComment,
 }) => {
+  const { id } = useParams();
+  const postId = id.replace(':', '');
+
+  useEffect(async () => {
+    const { data } = await getPost(postId);
+    setSelectPost(data);
+  }, [postId]);
+
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (userComment.trim()) {
@@ -14,6 +24,7 @@ const EditPost = ({
       setUserComment('');
     }
   };
+
   return (
     <Row gutter={[24, 24]}>
       <Col className="gutter-row" span={24}>

@@ -3,11 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Breadcrumb, Button } from 'antd';
 import { AppstoreAddOutlined } from '@ant-design/icons';
 
-const BredCrumbItems = ({ id, title }) => {
+const BredCrumbItems = ({ post, id, title }) => {
   const breadcrumbNameMap = {
     '/addPost': 'Add new post',
-    '/editPost': `Edit Post ${id} ${title}`,
+    [post]: `Edit Post ${id} ${title}`,
   };
+
   const location = useLocation();
   const pathSnippets = location.pathname.split('/').filter((i) => i);
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
