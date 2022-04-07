@@ -12,6 +12,9 @@ const Post = ({
   return (
     <Col className="gutter-row" xs={24} md={12} lg={6}>
       <Card
+        onClick={() => {
+          navigate(`/post:${post.id}`);
+        }}
         style={{
           borderRadius: '2%',
         }}
@@ -24,9 +27,10 @@ const Post = ({
           />
                 )}
         extra={(
-          <Button onClick={() => {
+          <Button onClick={(event) => {
+            event.stopPropagation();
             setSelected(post);
-            navigate(`/post:${post.id}`);
+            navigate(`/edit:${post.id}`);
           }}
           >
             Edit

@@ -4,11 +4,12 @@ import {
   Routes, Route,
 } from 'react-router-dom';
 import {
-  getPosts, getComments, editComment, remove, create,
+
+  getPosts, getComments, editComment, remove, create, put,
 } from '../api/apiRequest';
-import PostsList from './postsList';
+import PostsList from './PostsList';
 import AddPost from './AddPost';
-import EditPost from './EditPost';
+import CommentPost from './CommentPost';
 import LayoutPost from './LayoutPost';
 
 const App = () => {
@@ -31,6 +32,17 @@ const App = () => {
     const { data } = await editComment(selectPost.id, { body: userComment });
     setComments([...comments, data]);
   };
+
+  const editPost = async (post) => {
+    const { data } = await put(selectPost.id, post);
+    console.log(data);
+    setPosts(posts.map((item) => {
+      if (item.id === data.id) {
+        return { ...item, ...data };
+      }
+      return item;
+    }));
+  };
   const deleteComment = async (id) => {
     await remove(id);
     setComments(comments.filter((comment) => comment.id !== id));
@@ -42,7 +54,17 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<LayoutPost post={`/post:${selectPost.id}`} id={selectPost.id} title={selectPost.title} />}>
+      <Route
+        path="/"
+        element={(
+          <LayoutPost
+            edit={`/edit:${selectPost.id}`}
+            post={`/post:${selectPost.id}`}
+            id={selectPost.id}
+            title={selectPost.title}
+          />
+)}
+      >
         <Route
           index
           element={(
@@ -61,9 +83,18 @@ const App = () => {
                       )}
         />
         <Route
+          path="/edit:id"
+          element={(
+            <AddPost
+              editPost={editPost}
+              setSelectPost={setSelectPost}
+            />
+            )}
+        />
+        <Route
           path="/post:id"
           element={(
-            <EditPost
+            <CommentPost
               setSelectPost={setSelectPost}
               selectPost={selectPost}
               comments={comments}

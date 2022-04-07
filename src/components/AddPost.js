@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   Button, Form, Input, Typography,
 } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { getPost } from '../api/apiRequest';
 
-const AddPost = ({ createPost }) => {
+const AddPost = ({ createPost, editPost, setSelectPost }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [preview, setPreview] = useState('');
   const [author, setAuthor] = useState('');
 
   const navigate = useNavigate();
+  const { id } = useParams();
+  if (id) {
+    const postId = id.replace(':', '');
+    useEffect(async () => {
+      const { data } = await getPost(postId);
+      setSelectPost(data);
+      setTitle(data.title);
+      setAuthor(data.author);
+      setPreview(data.preview);
+      setDescription(data.description);
+    }, [postId]);
+  }
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +34,8 @@ const AddPost = ({ createPost }) => {
       preview,
       title,
     };
-    createPost(newPost);
+    const action = id ? editPost : createPost;
+    action(newPost);
     navigate('/');
 
     setTitle('');
@@ -78,7 +92,7 @@ const AddPost = ({ createPost }) => {
           type="primary"
           size="large"
         >
-          Create
+          {id ? 'Update' : 'Create'}
         </Button>
       </Form.Item>
     </Form>

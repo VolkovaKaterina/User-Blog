@@ -6,7 +6,7 @@ import TextArea from 'antd/es/input/TextArea';
 import { useParams } from 'react-router-dom';
 import { getPost } from '../api/apiRequest';
 
-const EditPost = ({
+const CommentPost = ({
   selectPost, setSelectPost, comments, setUserComment, editUserComment, userComment, deleteComment,
 }) => {
   const { id } = useParams();
@@ -78,4 +78,4 @@ const EditPost = ({
 
   );
 };
-export default EditPost;
+export default CommentPost;

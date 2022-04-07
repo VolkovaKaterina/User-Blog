@@ -1,14 +1,16 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Breadcrumb, Button } from 'antd';
-import { AppstoreAddOutlined } from '@ant-design/icons';
+import { Link, useLocation } from 'react-router-dom';
+import { Breadcrumb } from 'antd';
 
-const BredCrumbItems = ({ post, id, title }) => {
+const BredCrumbItems = ({
+  edit, post, id, title,
+}) => {
   const breadcrumbNameMap = {
     '/addPost': 'Add new post',
-    [post]: `Edit Post ${id} ${title}`,
-  };
+    [post]: `Comment post ${id} ${title}`,
+    [edit]: `Edit post ${id} ${title}`,
 
+  };
   const location = useLocation();
   const pathSnippets = location.pathname.split('/').filter((i) => i);
   const extraBreadcrumbItems = pathSnippets.map((_, index) => {
@@ -24,28 +26,11 @@ const BredCrumbItems = ({ post, id, title }) => {
       <Link to="/">All Posts</Link>
     </Breadcrumb.Item>,
   ].concat(extraBreadcrumbItems);
-  const navigate = useNavigate();
+
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    }}
-    >
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        {breadcrumbItems}
-      </Breadcrumb>
-      <Button
-        onClick={() => { navigate('/addPost'); }}
-        size="large"
-        icon={<AppstoreAddOutlined />}
-        style={{
-          marginBottom: '1rem',
-        }}
-      >
-        Add post
-      </Button>
-    </div>
+    <Breadcrumb style={{ margin: '16px 0' }}>
+      {breadcrumbItems}
+    </Breadcrumb>
   );
 };
 export default BredCrumbItems;
