@@ -4,6 +4,7 @@ import {
   Button, Form, Input, Typography,
 } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { AppstoreAddOutlined } from '@ant-design/icons';
 import { getPost } from '../api/apiRequest';
 
 const AddPost = ({ createPost, editPost, setSelectPost }) => {
@@ -47,7 +48,24 @@ const AddPost = ({ createPost, editPost, setSelectPost }) => {
     <Form
       size="large"
       required
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
+      <Button
+        onClick={(e) => { onFormSubmit(e); }}
+        size="large"
+        icon={<AppstoreAddOutlined />}
+        style={{
+          marginBottom: '1rem',
+          alignSelf: 'end',
+          position: 'absolute',
+          top: '15%',
+        }}
+      >
+        {id ? 'Edit Post' : 'Add post'}
+      </Button>
       <Form.Item>
         <Typography.Title level={4}>Title</Typography.Title>
         <Input
@@ -96,6 +114,7 @@ const AddPost = ({ createPost, editPost, setSelectPost }) => {
         </Button>
       </Form.Item>
     </Form>
+
   );
 };
 export default AddPost;

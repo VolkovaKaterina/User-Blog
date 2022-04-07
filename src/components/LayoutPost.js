@@ -10,7 +10,6 @@ const LayoutPost = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   return (
     <Layout className="layout">
       <Header style={{ background: '#ffff' }}>
@@ -36,7 +35,7 @@ const LayoutPost = ({
         }}
         >
           <BredCrumbItems edit={edit} post={post} id={id} title={title} />
-          {location.pathname === post ? '' : (
+          {location.pathname === '/' ? (
             <Button
               onClick={() => {
                 const locate = location.pathname === edit ? edit : '/addPost';
@@ -50,9 +49,9 @@ const LayoutPost = ({
             >
               {location.pathname === edit ? 'Edit Post' : 'Add post'}
             </Button>
-          )}
+          ) : ''}
         </div>
-        <div className="site-layout-content" style={{ padding: '20px 20px' }}>
+        <div className="site-layout-content">
           <Outlet />
         </div>
       </Content>
