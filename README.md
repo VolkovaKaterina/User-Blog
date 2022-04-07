@@ -38,8 +38,10 @@ Install
 ```bash
  npm install -g json-server
  ```
-In the Terminal, move to the folder with the db.json file then run
+
 ```bash
-json-server --watch db.json --port 3004
+ navigate to db folder: cd db
+ json-server --watch db.json --port 3004
+
     
 
