@@ -34,14 +34,15 @@ In the project directory run:
  
 ```
 ## Json-Server
-Install
+## Install
 ```bash
  npm install -g json-server
  ```
+## Start
 
-```bash
- navigate to db folder: cd db
- json-server --watch db.json --port 3004
+1. navigate to db folder: ```cd db```
+2. ```json-server --watch db.json --port 3004```
+
 
     
 

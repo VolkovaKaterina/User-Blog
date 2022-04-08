@@ -7,7 +7,7 @@ import TextArea from 'antd/es/input/TextArea';
 import { AppstoreAddOutlined } from '@ant-design/icons';
 import { getPost } from '../api/apiRequest';
 
-const AddPost = ({ createPost, editPost, setSelectPost }) => {
+const AddPost = ({ createPost, editPost, setSelectedPost }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [preview, setPreview] = useState('');
@@ -19,7 +19,7 @@ const AddPost = ({ createPost, editPost, setSelectPost }) => {
     const postId = id.replace(':', '');
     useEffect(async () => {
       const { data } = await getPost(postId);
-      setSelectPost(data);
+      setSelectedPost(data);
       setTitle(data.title);
       setAuthor(data.author);
       setPreview(data.preview);
@@ -64,7 +64,7 @@ const AddPost = ({ createPost, editPost, setSelectPost }) => {
           top: '15%',
         }}
       >
-        {id ? 'Edit Post' : 'Add post'}
+        {id ? 'Edit PostItem' : 'Add post'}
       </Button>
       <Form.Item>
         <Typography.Title level={4}>Title</Typography.Title>

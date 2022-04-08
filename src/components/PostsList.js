@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row } from 'antd';
 
-import Post from './Post';
+import PostItem from './PostItem';
 
 const PostsList = ({ posts, setSelected }) => (
   <div
@@ -14,7 +14,7 @@ const PostsList = ({ posts, setSelected }) => (
   >
     <Row gutter={[24, 24]}>
       {posts.map(((post) => (
-        <Post
+        <PostItem
           key={post.id}
           image={post.preview}
           title={post.title}

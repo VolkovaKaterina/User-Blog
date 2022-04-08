@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import {
   Routes, Route,
 } from 'react-router-dom';
@@ -9,12 +9,12 @@ import {
 } from '../api/apiRequest';
 import PostsList from './PostsList';
 import AddPost from './AddPost';
-import CommentPost from './CommentPost';
+import Post from './Post';
 import LayoutPost from './LayoutPost';
 
 const App = () => {
   const [posts, setPosts] = useState([]);
-  const [selectPost, setSelectPost] = useState({});
+  const [selectedPost, setSelectedPost] = useState({});
   const [comments, setComments] = useState({});
   const [userComment, setUserComment] = useState('');
 
@@ -24,24 +24,19 @@ const App = () => {
   }, []);
 
   useEffect(async () => {
-    const { data } = await getComments(selectPost.id);
+    const { data } = await getComments(selectedPost.id);
     setComments(data);
-  }, [selectPost]);
+  }, [selectedPost]);
 
   const editUserComment = async () => {
-    const { data } = await editComment(selectPost.id, { body: userComment });
+    const { data } = await editComment(selectedPost.id, { body: userComment });
     setComments([...comments, data]);
   };
 
   const editPost = async (post) => {
-    const { data } = await put(selectPost.id, post);
-    console.log(data);
-    setPosts(posts.map((item) => {
-      if (item.id === data.id) {
-        return { ...item, ...data };
-      }
-      return item;
-    }));
+    await put(selectedPost.id, post);
+    const { data } = await getPosts();
+    setPosts(data);
   };
   const deleteComment = async (id) => {
     await remove(id);
@@ -58,10 +53,10 @@ const App = () => {
         path="/"
         element={(
           <LayoutPost
-            edit={`/edit:${selectPost.id}`}
-            post={`/post:${selectPost.id}`}
-            id={selectPost.id}
-            title={selectPost.title}
+            edit={`/edit:${selectedPost.id}`}
+            post={`/post:${selectedPost.id}`}
+            id={selectedPost.id}
+            title={selectedPost.title}
           />
 )}
       >
@@ -70,7 +65,7 @@ const App = () => {
           element={(
             <PostsList
               posts={posts}
-              setSelected={setSelectPost}
+              setSelected={setSelectedPost}
             />
                       )}
         />
@@ -87,16 +82,16 @@ const App = () => {
           element={(
             <AddPost
               editPost={editPost}
-              setSelectPost={setSelectPost}
+              setSelectedPost={setSelectedPost}
             />
             )}
         />
         <Route
           path="/post:id"
           element={(
-            <CommentPost
-              setSelectPost={setSelectPost}
-              selectPost={selectPost}
+            <Post
+              setSelectedPost={setSelectedPost}
+              selectedPost={selectedPost}
               comments={comments}
               setUserComment={setUserComment}
               userComment={userComment}

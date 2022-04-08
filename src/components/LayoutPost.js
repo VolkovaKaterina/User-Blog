@@ -47,7 +47,7 @@ const LayoutPost = ({
                 marginBottom: '1rem',
               }}
             >
-              {location.pathname === edit ? 'Edit Post' : 'Add post'}
+              {location.pathname === edit ? 'Edit PostItem' : 'Add post'}
             </Button>
           ) : ''}
         </div>

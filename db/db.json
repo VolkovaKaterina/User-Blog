@@ -79,10 +79,24 @@
     },
     {
       "author": "Volkova",
-      "description": "Description 1",
+      "description": "место на корабле (помещение, участок палубы) оборудованное техническими средствами, на котором выполняют свои обязанности лица несущие службу корабельных нарядов. Подразделяются по виду и назначению на посты корабельного дежурства, посты корабельной вахты и специальной вахты. К примеру на корабле могут быть посты живучести, посты энергетики и живучести, посты медицинской помощи, пост водолазный и другие",
       "preview": "https://www.reviewpro.com/wp-content/uploads/2019/05/traveler.jpeg",
-      "title": "My Post v",
+      "title": "My Post ",
       "id": 12
+    },
+    {
+      "author": "me me",
+      "description": "description this is dog",
+      "preview": "https://picsum.photos/id/237/200/150",
+      "title": "Title",
+      "id": 13
+    },
+    {
+      "author": "Me",
+      "description": "Hello",
+      "preview": "https://picsum.photos/id/122/200/150",
+      "title": "Somethig",
+      "id": 14
     }
   ],
   "comments": [
@@ -115,6 +129,21 @@
       "body": "yooo",
       "postId": "12",
       "id": 8
+    },
+    {
+      "body": "comment 2",
+      "postId": "1",
+      "id": 9
+    },
+    {
+      "body": "hello dog",
+      "postId": "13",
+      "id": 10
+    },
+    {
+      "body": "comment",
+      "postId": "14",
+      "id": 11
     }
   ]
 }
